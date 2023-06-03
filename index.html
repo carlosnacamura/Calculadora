@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <style>
+        * {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(purple,red);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculadora {
+            background-color: rgb(9, 0, 0,.5);
+            padding: 18px;
+            border-radius: 20px;
+            border: 3px solid white;
+        }
+        h1 {
+            font-family: monospace;
+            color: white;
+            text-align: center;
+            margin: 10px;
+        }
+        .resultado {
+            background-color: rgb(209, 207, 207);
+            width: 100%;
+            border: none;
+            margin-bottom: 10px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: end;
+            font-family: monospace;
+            font-size: 30px;
+        }
+        button {
+            background-color: rgb(255, 174, 0);
+            border: none;
+            padding: 20px;
+            border-radius: 20px;
+            transition: .5s;
+            box-shadow: 5px 3px 2px black;
+            margin: 3px;
+        }
+        button:hover {
+            background-color: orangered;
+        }
+        button:focus {
+            box-shadow: 0px 0px 0px black;
+        }
+        .igual {
+            height: 120px;
+        }
+        .zero {
+            width: 120px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <div class="calculadora">
+        <h1>Calculadora</h1>
+        <div class="resultado"></div>
+        <table>
+            <tr>
+                <td><button onclick="limpar()">C</button></td>
+                <td><button onclick="back()"><</button></td>
+                <td><button onclick="inserir('/')">/</button></td>
+                <td><button onclick="inserir('*')">X</button></td>
+            </tr>
+            <tr>
+                <td><button onclick=" inserir('7')">7</button></td>
+                <td><button onclick=" inserir('8')">8</button></td>
+                <td><button onclick=" inserir('9')">9</button></td>
+                <td><button onclick=" inserir('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button onclick=" inserir('6')">6</button></td>
+                <td><button onclick=" inserir('5')">5</button></td>
+                <td><button onclick=" inserir('4')">4</button></td>
+                <td><button onclick=" inserir('+')">+</button></td>
+            </tr>
+            <tr>
+                <td><button onclick=" inserir('3')">3</button></td>
+                <td><button onclick=" inserir('2')">2</button></td>
+                <td><button onclick=" inserir('1')">1</button></td>
+                <td rowspan="2"><button onclick="somar()" class="igual">=</button></td>
+            </tr>
+                <tr>
+                        <td colspan="2"><button onclick=" inserir('0')" class="zero">0</button></td>
+                        <td><button onclick=" inserir('.')">.</button></td>
+                </tr>
+        </table>
+    </div>
+    <script>
+        function limpar(){
+            document.querySelector(".resultado").innerHTML = ""
+        }
+        function inserir(num){
+        document.querySelector(".resultado").innerHTML += num
+        }
+        function back(){
+            let resultado = document.querySelector(".resultado").innerHTML
+            document.querySelector(".resultado").innerHTML = resultado.substring(0, resultado.length -1)
+        }
+        
+        function somar(){
+             let resultado = document.querySelector(".resultado").innerHTML
+             if(resultado){
+                document.querySelector(".resultado").innerHTML = eval(resultado)
+             }
+             else {
+                document.querySelector(".resultado").innerHTML = "Nenhum número foi colocado..."
+             }
+        }
+            document.addEventListener('keydown', (event) => {
+  switch (event.key) {
+    case '0':
+        document.querySelector(".resultado").innerHTML += "0";
+        break
+    case '1':
+        document.querySelector(".resultado").innerHTML += "1";
+        break
+    case '2':
+        document.querySelector(".resultado").innerHTML += "2";
+        break
+    case '3':
+        document.querySelector(".resultado").innerHTML += "3";
+        break
+    case '4':
+        document.querySelector(".resultado").innerHTML += "4";
+        break
+    case '5':
+        document.querySelector(".resultado").innerHTML += "5";
+        break
+    case '6':
+        document.querySelector(".resultado").innerHTML += "6";
+        break
+    case '7':
+        document.querySelector(".resultado").innerHTML += "7";
+        break
+    case '8':
+        document.querySelector(".resultado").innerHTML += "8";
+        break
+    case '9':
+        document.querySelector(".resultado").innerHTML += "9";
+        break
+    case '+':
+        document.querySelector(".resultado").innerHTML += "+";
+        break
+    case '-':
+        document.querySelector(".resultado").innerHTML += "-";
+        break
+    case 'x':
+        document.querySelector(".resultado").innerHTML += "*";
+        break
+    case '.':
+        document.querySelector(".resultado").innerHTML += ".";
+        break
+    case '/':
+        document.querySelector(".resultado").innerHTML += "/";
+        break
+    case 'c':
+        document.querySelector(".resultado").innerHTML = ""
+        break
+    case 'Enter':
+        let resultado = document.querySelector(".resultado").innerHTML
+        if(resultado){
+           document.querySelector(".resultado").innerHTML = eval(resultado)
+        }
+        else {
+           document.querySelector(".resultado").innerHTML = "Nenhum número foi colocado..."
+        }
+        break
+    }
+    
+
+});
+addEventListener('keydown',(event)=>{
+        if (event.key === 'Backspace'){
+            let resultado = document.querySelector(".resultado").innerHTML
+            document.querySelector(".resultado").innerHTML = resultado.substring(0, resultado.length -1)
+        }
+    })
+    </script>
+</body>
+</html>
